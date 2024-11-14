@@ -4,9 +4,9 @@ import requests
 def main():
     choice = input("[R]eport weather or [s]ee reports? ")
     while choice:
-        if choice.lower().strip() == 'r':
+        if choice.lower().strip() == "r":
             report_event()
-        elif choice.lower().strip() == 's':
+        elif choice.lower().strip() == "s":
             see_events()
         else:
             print(f"Don't know what to do with {choice}.")
@@ -18,12 +18,7 @@ def report_event():
     desc = input("What is happening now? ")
     city = input("What city? ")
 
-    data = {
-        "description": desc,
-        "location": {
-            "city": city
-        }
-    }
+    data = {"description": desc, "location": {"city": city}}
 
     url = "http://127.0.0.1:8000/api/reports"
     resp = requests.post(url, json=data)
@@ -43,5 +38,5 @@ def see_events():
         print(f"{r.get('location').get('city')} has {r.get('description')}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
